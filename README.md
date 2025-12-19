@@ -27,7 +27,7 @@ pip install -r requirements.txt
 
 **Output**: `{"priority": "HIGH", "30d_loss": "18.2%"}`
 
-## ⚡ ONNX Inference
+## ONNX Inference
 ```bash
 cd code
 python infer.py
@@ -35,14 +35,14 @@ python infer.py
 
 **Live Demo**: [HuggingFace Space](https://huggingface.co/spaces/AdityaPatwa/TechTrident)
 
-## 📊 Quick Results
+## Quick Results
 | Metric | Value |
 |--------|-------|
 | Defect Acc | **99.2%**  |
 | Degradation RMSE | **0.87%**  |
 | Inference | **15ms** |
 
-## 📁 Structure
+## Structure
 ```text
 /model
    └── final_model.onnx
@@ -59,7 +59,7 @@ README.md
 requirements.txt
 ```
 
-## 👥 Team TechTrident
+## Team TechTrident
 - **Lead ML Engineer**: Dev Kumar Sharma (Kuch aur Train krna hai Model)
 - **Computer Vision**: Abhay Gupta
 - **Full-Stack Dev**: Aditya Patwa
@@ -69,4 +69,5 @@ requirements.txt
 
 **Datasets**: [PV Panel Defect Dataset](https://www.kaggle.com/datasets/alicjalena/pv-panel-defect-dataset)
 **TechTrident** | Wadla 4.0 Hackathon 2025
+
 
