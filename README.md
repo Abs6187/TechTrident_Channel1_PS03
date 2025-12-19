@@ -18,24 +18,19 @@
 
 **Models**: ResNet18 + XGBoost + RandomForest | **ONNX v1.15**
 
-## 🚀 Training 
+## Dependencies Installation 
 ```bash
 pip install -r requirements.txt
-python notebooks/01_train.py --data data/nrel_pv.csv --images data/elpv/
 ```
 
 **Outputs**: `resnet18_solar.onnx`, `xgboost_degr.onnx`
 
-## ⚡ ONNX Inference (28ms/img)
-**Single image:**
-```bash
-python src/infer.py --image panel_dusty.jpg --onnx SolarGuard_v1.onnx
-```
 **Output**: `{"priority": "HIGH", "30d_loss": "18.2%"}`
 
-**Batch:**
+## ⚡ ONNX Inference
 ```bash
-python src/infer.py --images data/test/ --output results.json
+cd code
+python infer.py
 ```
 
 **Live Demo**: [HuggingFace Space](https://huggingface.co/spaces/AdityaPatwa/TechTrident)
@@ -72,5 +67,5 @@ requirements.txt
 
 **Contact**: [contact2abhay@gmail.com](mailto:contact2abhay@gmail.com)
 
-**Datasets**: NREL PV + ELPV (public) [file:1][web:16]  
+**Datasets**: [PV Panel Defect Dataset](https://www.kaggle.com/datasets/alicjalena/pv-panel-defect-dataset)
 **TechTrident** | Wadla 4.0 Hackathon 2025
