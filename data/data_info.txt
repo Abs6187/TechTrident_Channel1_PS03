@@ -66,5 +66,5 @@ This dataset is ideal for:
 --------------------------------------------------------------------------------
 If you use this dataset in your research or project, please cite it as follows:
 
-[Insert Your Name/Project Title] (2025). PV Panel Defect Dataset for Machine 
-Learning & Deep Learning Analysis. Available at: [Insert Link/Repository].
+TechTrident (2025). PV Panel Defect Dataset for Machine 
+Learning & Deep Learning Analysis. Available at: https://www.kaggle.com/datasets/alicjalena/pv-panel-defect-dataset
