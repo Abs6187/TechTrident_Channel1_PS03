@@ -49,11 +49,19 @@ python src/infer.py --images data/test/ --output results.json
 
 ## 📁 Structure
 ```text
-├── models/SolarGuard_v1.onnx # Combined model
-├── data/nrel_pv_sample.csv # Tabular perf
-├── notebooks/01_train.py # Training
-├── src/infer.py # ONNX inference
-└── requirements.txt
+/model
+   └── final_model.onnx
+/code
+   ├── train.py
+   ├── preprocess.py
+   ├── export_onnx.py
+   └── infer.py
+/data
+   └── dataset_info.txt
+/logs
+   └── training_logs.txt
+README.md
+requirements.txt
 ```
 
 ## 👥 Team TechTrident
