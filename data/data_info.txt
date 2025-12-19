@@ -1,0 +1,70 @@
+================================================================================
+PV PANEL DEFECT DETECTION DATASET
+================================================================================
+
+📊 DATASET OVERVIEW
+--------------------------------------------------------------------------------
+This dataset contains labeled images of photovoltaic (PV) panels categorized into 
+six distinct classes based on their operational condition. It was curated as part 
+of an educational and research initiative to evaluate and compare machine learning 
+classifiers and hybrid deep learning approaches for automatic PV defect detection.
+
+By aggregating images from various open sources, this collection provides a 
+structured, balanced, and high-quality dataset suitable for training robust 
+classification models.
+
+🔍 DATASET DETAILS
+--------------------------------------------------------------------------------
+The dataset includes the following six classes:
+
+1. Bird-drop        : Panels contaminated with bird droppings, causing partial shading.
+2. Clean            : Panels in optimal, perfect condition with no obstructions.
+3. Dusty            : Panels accumulating dust, reducing light absorption efficiency.
+4. Electrical-damage: Internal defects including hot spots, delamination, and bypass diode failures.
+5. Physical-damage  : External mechanical damage such as glass cracks or frame breakage.
+6. Snow-covered     : Panels partially or completely obscured by snow accumulation.
+
+📊 DATASET DISTRIBUTION
+--------------------------------------------------------------------------------
+The dataset is partitioned into Training, Validation, and Testing sets as follows:
+
+| Class             | Training | Validation | Test  | Total  |
+|-------------------|----------|------------|-------|--------|
+| Bird-drop         | 2,253    | 284        | 296   | 2,833  |
+| Clean             | 2,189    | 271        | 278   | 2,738  |
+| Dusty             | 2,097    | 264        | 258   | 2,619  |
+| Electrical-damage | 1,842    | 231        | 228   | 2,301  |
+| Physical-damage   | 1,867    | 239        | 233   | 2,339  |
+| Snow-covered      | 1,734    | 212        | 223   | 2,169  |
+|-------------------|----------|------------|-------|--------|
+| TOTAL             | 11,982   | 1,501      | 1,516 | 14,999 |
+
+🗄 SOURCES & ATTRIBUTION
+--------------------------------------------------------------------------------
+1. Primary Source (Kaggle):
+   "Solar Panel Images Clean and Faulty Images"
+   - Licensed for public and research use.
+
+2. Supplementary Images:
+   Manually collected from publicly available web sources (e.g., Google Images, 
+   educational portals, and academic references) to balance the class distribution.
+
+⚠️ DISCLAIMER
+This dataset is a custom compilation intended strictly for non-commercial, 
+educational, and research purposes. All rights to the individual images remain 
+with their original authors or data providers.
+
+💡 USAGE SUGGESTIONS
+--------------------------------------------------------------------------------
+This dataset is ideal for:
+* Machine Learning model training and evaluation (SVM, Random Forest, etc.).
+* Deep Learning transfer learning experiments (ResNet, VGG, EfficientNet).
+* Developing Hybrid models (e.g., CNN for feature extraction + ML classifiers).
+* Experimentation with Explainable AI (XAI) methods (e.g., LIME, Grad-CAM).
+
+👩‍💻 CITATION
+--------------------------------------------------------------------------------
+If you use this dataset in your research or project, please cite it as follows:
+
+[Insert Your Name/Project Title] (2025). PV Panel Defect Dataset for Machine 
+Learning & Deep Learning Analysis. Available at: [Insert Link/Repository].
