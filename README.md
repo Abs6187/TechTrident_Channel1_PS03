@@ -47,9 +47,7 @@ python infer.py
 /model
    └── final_model.onnx
 /code
-   ├── train.py
-   ├── preprocess.py
-   ├── export_onnx.py
+   ├── training.ipynb
    └── infer.py
 /data
    └── dataset_info.txt
@@ -69,5 +67,6 @@ requirements.txt
 
 **Datasets**: [PV Panel Defect Dataset](https://www.kaggle.com/datasets/alicjalena/pv-panel-defect-dataset)
 **TechTrident** | Wadla 4.0 Hackathon 2025
+
 
 
