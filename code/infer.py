@@ -327,7 +327,6 @@ custom_css = """
 
 .gradio-container {
     font-family: 'Inter', sans-serif !important;
-    background-color: #0a0a0a !important;
 }
 
 .main-header {
@@ -385,8 +384,8 @@ label {
 with gr.Blocks(css=custom_css, theme=gr.themes.Default(primary_hue="neutral", secondary_hue="neutral")) as iface:
     gr.HTML("""
         <div class="main-header">
-            <h1 style="margin: 0; font-size: 42px; font-weight: 700;">☀️ Solar Panel AI Diagnostics</h1>
-            <p style="margin: 10px 0 0 0; font-size: 18px; opacity: 0.95;">Intelligent defect detection, maintenance planning & performance forecasting</p>
+            <h1 style="margin: 0; font-size: 42px; font-weight: 700; color: #f5f5f5;">☀️ Solar Panel AI Diagnostics</h1>
+            <p style="margin: 10px 0 0 0; font-size: 18px; opacity: 0.95; color: #a3a3a3;">Intelligent defect detection, maintenance planning & performance forecasting</p>
         </div>
     """)
     
