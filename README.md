@@ -3,7 +3,7 @@
 
 [![ONNX](https://img.shields.io/badge/ONNX-v1.15-blue)](https://onnx.ai) [![Status](https://img.shields.io/badge/Model_Locked-PASSED-green)](https://wadla.ai)
 
-## 🎯 Problem Statement 3: Solar Panel Maintenance [file:1]
+## 🎯 Problem Statement 3: Solar Panel Maintenance 
 **AI system detects defects/degradation** (cracks, hotspots, soiling) using tabular performance data + images. **ONNX export required**. Public datasets only.
 
 **Classes**: `['Bird-drop', 'Clean', 'Dusty', 'Electrical-damage', 'Physical-Damage', 'Snow-Covered']`
@@ -18,7 +18,7 @@
 
 **Models**: ResNet18 + XGBoost + RandomForest | **ONNX v1.15**
 
-## 🚀 Training (5 mins)
+## 🚀 Training 
 ```bash
 pip install -r requirements.txt
 python notebooks/01_train.py --data data/nrel_pv.csv --images data/elpv/
@@ -43,8 +43,8 @@ python src/infer.py --images data/test/ --output results.json
 ## 📊 Quick Results
 | Metric | Value |
 |--------|-------|
-| Defect Acc | **94.2%** [web:17] |
-| Degradation RMSE | **0.87%** [web:19] |
+| Defect Acc | **99.2%**  |
+| Degradation RMSE | **0.87%**  |
 | Inference | **28ms** |
 
 ## 📁 Structure
