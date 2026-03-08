@@ -1,5 +1,5 @@
 # Solar Panel AI Diagnostics
-**TechTrident** | **Wadla 4.0 2025** | **[HF Demo](https://huggingface.co/spaces/AdityaPatwa/TechTrident)**
+**TechTrident** | **Wadla 4.0 2025** | **[HF Demo](https://huggingface.co/spaces/Abs6187/TechTrident)**
 
 [![ONNX](https://img.shields.io/badge/ONNX-v1.15-blue)](https://onnx.ai) [![Status](https://img.shields.io/badge/Model_Locked-PASSED-green)](https://wadla.ai)
 
@@ -33,7 +33,7 @@ cd code
 python infer.py
 ```
 
-**Live Demo**: [HuggingFace Space](https://huggingface.co/spaces/AdityaPatwa/TechTrident)
+**Live Demo**: [HuggingFace Space](https://huggingface.co/spaces/Abs6187/TechTrident)
 
 ## Quick Results
 | Metric | Value |
@@ -53,6 +53,7 @@ python infer.py
    └── dataset_info.txt
 /logs
    └── training_logs.txt
+app.py          ← Hugging Face Spaces entry point
 README.md
 requirements.txt
 ```
