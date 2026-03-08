@@ -40,5 +40,12 @@ jobs:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           git remote add space https://Abs6187:${HF_TOKEN}@huggingface.co/spaces/Abs6187/TechTrident
-          # Force push since GitHub is the single source of truth for the HF Space
-          git push --force space HEAD:main
+
+          # Build a clean deployment commit that excludes the model/ directory.
+          # The model files already exist on the HF Space and exceed the 10 MiB
+          # per-file limit, so pushing them would be rejected by the pre-receive hook.
+          # git checkout --orphan keeps all current files staged in the index.
+          git checkout --orphan hf-deploy
+          git rm -rf --cached model/
+          git commit -m "Sync to Hugging Face Space (model files excluded)"
+          git push --force space hf-deploy:main
