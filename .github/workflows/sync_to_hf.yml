@@ -24,6 +24,17 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
 
+      - name: Validate HF_TOKEN
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          if [ -z "${HF_TOKEN}" ]; then
+            echo "Error: HF_TOKEN secret is not set."
+            echo "Please add a Hugging Face User Access Token as a repository secret named HF_TOKEN."
+            echo "See: https://huggingface.co/settings/tokens"
+            exit 1
+          fi
+
       - name: Push to Hugging Face Space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
