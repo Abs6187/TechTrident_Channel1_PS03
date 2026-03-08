@@ -6,6 +6,7 @@ import gradio as gr
 import cv2
 from datetime import datetime, timedelta
 import os
+import html
 
 
 # Path to ONNX model (relative to repo root for HF Spaces)
@@ -306,11 +307,41 @@ def predict_image(pil_image):
     prob_dict = {CLASS_NAMES[i]: float(probs[i]) for i in range(len(CLASS_NAMES))}
     return predicted_class, confidence, prob_dict, pred_idx
 
+def extract_frame_from_video(video_path):
+    """
+    Extract the middle frame from a video file as a PIL Image.
+    Used as a fallback when the user uploads a video instead of an image.
+    """
+    cap = cv2.VideoCapture(video_path)
+    if not cap.isOpened():
+        raise ValueError("Could not open the uploaded video file.")
+
+    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    mid_frame = total_frames // 2
+    cap.set(cv2.CAP_PROP_POS_FRAMES, mid_frame)
+
+    ret, frame = cap.read()
+    cap.release()
+
+    if not ret:
+        raise ValueError("Could not read a frame from the uploaded video.")
+
+    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    return Image.fromarray(frame_rgb)
+
 print("✅ Inference pipeline ready")
 
-def gradio_predict(image, current_efficiency, time_horizon):
+def gradio_predict(image, video, current_efficiency, time_horizon):
+    # Video fallback: if no image provided but a video is, extract its middle frame
+    if image is None and video is not None:
+        try:
+            image = extract_frame_from_video(video)
+        except Exception as e:
+            error_msg = f"<p style='color:#f87171;'>⚠️ Could not process video: {html.escape(str(e))}</p>"
+            return None, None, None, None, error_msg, ""
+
     if image is None:
-        return None, None, None, None, "Please upload an image to analyze.", ""
+        return None, None, None, None, "<p style='color:#f87171;'>⚠️ Please upload an image or video to analyze.</p>", ""
     
     pred_class, confidence, prob_dict, pred_idx = predict_image(image)
     heatmap = get_gradcam_heatmap(image, pred_idx)
@@ -398,6 +429,10 @@ with gr.Blocks(css=custom_css, theme=gr.themes.Default(primary_hue="neutral", se
                 label="📸 Upload Solar Panel Image",
                 height=300
             )
+            input_video = gr.Video(
+                label="🎬 Or Upload a Video (fallback — middle frame will be used)",
+                height=300
+            )
             gr.HTML('</div>')
             
             with gr.Row():
@@ -461,7 +496,7 @@ with gr.Blocks(css=custom_css, theme=gr.themes.Default(primary_hue="neutral", se
     
     predict_btn.click(
         fn=gradio_predict,
-        inputs=[input_image, current_eff, time_horiz],
+        inputs=[input_image, input_video, current_eff, time_horiz],
         outputs=[pred_class, confidence, prob_dist, heatmap_img, 
                 maintenance_output, degradation_output]
     )
@@ -471,8 +506,8 @@ with gr.Blocks(css=custom_css, theme=gr.themes.Default(primary_hue="neutral", se
             <h3 style="color: #fafafa; margin-top: 0;">📖 How to Use This System</h3>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
                 <div style="background: #0a0a0a; padding: 20px; border-radius: 8px; border: 1px solid #262626;">
-                    <h4 style="color: #a3a3a3; margin-top: 0;">1️⃣ Upload Image</h4>
-                    <p style="color: #737373; font-size: 14px; line-height: 1.6;">Take or upload a photo of your solar panel (thermal, infrared, or RGB)</p>
+                    <h4 style="color: #a3a3a3; margin-top: 0;">1️⃣ Upload Image or Video</h4>
+                    <p style="color: #737373; font-size: 14px; line-height: 1.6;">Upload a photo of your solar panel (thermal, infrared, or RGB). You can also upload a short video — the middle frame will be extracted and analyzed automatically.</p>
                 </div>
                 <div style="background: #0a0a0a; padding: 20px; border-radius: 8px; border: 1px solid #262626;">
                     <h4 style="color: #a3a3a3; margin-top: 0;">2️⃣ Set Parameters</h4>
