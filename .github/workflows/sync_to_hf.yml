@@ -1,14 +1,32 @@
 name: Sync to Hugging Face Space
 
+# ── Pause control ─────────────────────────────────────────────────────────────
+# To PAUSE the sync: set `SYNC_ENABLED` to `false` below (or delete the `push`
+# trigger so only manual `workflow_dispatch` runs remain).
+# To RESUME: set it back to `true`.
+env:
+  SYNC_ENABLED: "false"   # ← flip to "true" to re-enable automatic sync
+
 on:
-  push:
-    branches:
-      - main
+  # Automatic push sync is intentionally disabled.
+  # Uncomment the block below to re-enable it.
+  # push:
+  #   branches:
+  #     - main
   workflow_dispatch:
+    inputs:
+      enable_sync:
+        description: "Run the HF sync? (true / false)"
+        required: true
+        default: "false"
 
 jobs:
   sync-to-hf:
     name: Push to HF Space
+    # The push trigger is commented-out above, so this job only runs via
+    # workflow_dispatch. Set enable_sync to "true" in the manual-run dialog
+    # to actually execute the sync.
+    if: github.event.inputs.enable_sync == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: read
