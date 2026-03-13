@@ -500,7 +500,29 @@ with gr.Blocks(css=custom_css, theme=gr.themes.Default(primary_hue="neutral", se
         outputs=[pred_class, confidence, prob_dist, heatmap_img, 
                 maintenance_output, degradation_output]
     )
-    
+
+    # ── Sample dataset images (from Roboflow solar-panel-defects dataset) ──────
+    _SAMPLE_DIR = os.path.join(os.path.dirname(__file__), "data", "sample_images")
+    _SAMPLE_IMAGES = [
+        [os.path.join(_SAMPLE_DIR, "bird_drop_1.jpg"),        None, 95, 12],
+        [os.path.join(_SAMPLE_DIR, "clean_1.jpg"),             None, 95, 12],
+        [os.path.join(_SAMPLE_DIR, "dusty_1.jpg"),             None, 95, 12],
+        [os.path.join(_SAMPLE_DIR, "electrical_damage_1.jpg"), None, 95, 12],
+        [os.path.join(_SAMPLE_DIR, "physical_damage_1.jpg"),   None, 95, 12],
+        [os.path.join(_SAMPLE_DIR, "snow_covered_1.jpg"),      None, 95, 12],
+    ]
+
+    if os.path.isdir(_SAMPLE_DIR):
+        gr.Examples(
+            examples=_SAMPLE_IMAGES,
+            inputs=[input_image, input_video, current_eff, time_horiz],
+            outputs=[pred_class, confidence, prob_dist, heatmap_img,
+                     maintenance_output, degradation_output],
+            fn=gradio_predict,
+            label="📷 Sample Dataset Images — click any image to auto-analyse",
+            examples_per_page=6,
+        )
+
     gr.HTML("""
         <div style="background: #171717; padding: 30px; border-radius: 12px; margin-top: 30px; border: 1px solid #262626;">
             <h3 style="color: #fafafa; margin-top: 0;">📖 How to Use This System</h3>
